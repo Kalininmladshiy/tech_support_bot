@@ -8,11 +8,14 @@ from google.cloud import dialogflow
 
 def dialog(event, vk_api):
     message_from_bot = detect_intent_texts(event.user_id, event.text)
-    vk_api.messages.send(
-        user_id=event.user_id,
-        message=message_from_bot,
-        random_id=random.randint(1,1000)
-    )
+    try:
+        vk_api.messages.send(
+            user_id=event.user_id,
+            message=message_from_bot,
+            random_id=random.randint(1,1000)
+        )
+    except Exception:
+        pass
 
 def detect_intent_texts(session_id, text, language_code='ru'):
     load_dotenv()
