@@ -3,7 +3,6 @@ import vk_api as vk
 import os
 from dotenv import load_dotenv
 from vk_api.longpoll import VkLongPoll, VkEventType
-from google.cloud import dialogflow
 from utils.dialogflow_tools import detect_intent_texts
 
 
@@ -15,7 +14,7 @@ def dialog(event, vk_api):
         vk_api.messages.send(
                 user_id=event.user_id,
                 message=message_from_bot,
-                random_id=random.randint(1,1000)
+                random_id=random.randint(1, 1000),
             )
 
 

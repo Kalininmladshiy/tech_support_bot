@@ -1,6 +1,5 @@
 import requests
 import argparse
-import json
 import os
 from dotenv import load_dotenv
 from google.cloud import dialogflow
@@ -9,7 +8,6 @@ from google.cloud import dialogflow
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):
     intents_client = dialogflow.IntentsClient()
 
-    
     parent = dialogflow.AgentsClient.agent_path(project_id)
     training_phrases = []
     for training_phrases_part in training_phrases_parts:
@@ -31,7 +29,6 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
     print("Intent created: {}".format(response))
 
 
-
 if __name__ == "__main__":
     load_dotenv()
     project_id = os.getenv("PROJECT_ID")
@@ -43,7 +40,7 @@ if __name__ == "__main__":
         "--url",
         help="http адрес с .json файлом",
     )
-    args = parser.parse_args()    
+    args = parser.parse_args()
 
     response = requests.get(args.url)
     response.raise_for_status()

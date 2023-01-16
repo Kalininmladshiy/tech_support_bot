@@ -1,6 +1,4 @@
-import telegram
 import os
-import time
 from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Updater, CallbackContext, CommandHandler
@@ -23,7 +21,6 @@ def dialog(update: Update, context: CallbackContext):
 if __name__ == '__main__':
     load_dotenv()
     tg_token = os.getenv("TG_BOT_TOKEN")
-    tg_chat_id = os.getenv("TG_CHAT_ID")#Delet??????
 
     updater = Updater(token=tg_token)
     dispatcher = updater.dispatcher
