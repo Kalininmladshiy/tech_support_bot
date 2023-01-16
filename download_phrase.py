@@ -31,14 +31,14 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 
 if __name__ == "__main__":
     load_dotenv()
-    project_id = os.getenv("PROJECT_ID")
+    project_id = os.getenv('PROJECT_ID')
 
     parser = argparse.ArgumentParser(
            description='Программа загрузки тренировочных фраз в Dialogflow'
        )
     parser.add_argument(
-        "--url",
-        help="http адрес с .json файлом",
+        '--url',
+        help='http адрес с .json файлом',
     )
     args = parser.parse_args()
 

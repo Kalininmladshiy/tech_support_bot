@@ -7,11 +7,12 @@ from utils.dialogflow_tools import detect_intent_texts
 
 
 def start(update: Update, context: CallbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Бот запущен!")
+    context.bot.send_message(chat_id=update.effective_chat.id, text='Бот запущен!')
 
 
 def dialog(update: Update, context: CallbackContext):
     message_from_bot = detect_intent_texts(
+        project_id=project_id,
         session_id=update.effective_chat.id,
         text=update.message.text,
     ).fulfillment_text
@@ -20,7 +21,8 @@ def dialog(update: Update, context: CallbackContext):
 
 if __name__ == '__main__':
     load_dotenv()
-    tg_token = os.getenv("TG_BOT_TOKEN")
+    tg_token = os.getenv('TG_BOT_TOKEN')
+    project_id = os.getenv('PROJECT_ID')
 
     updater = Updater(token=tg_token)
     dispatcher = updater.dispatcher

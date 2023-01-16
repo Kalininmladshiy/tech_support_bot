@@ -7,10 +7,10 @@ from utils.dialogflow_tools import detect_intent_texts
 
 
 def dialog(event, vk_api):
-    if detect_intent_texts(event.user_id, event.text).intent.is_fallback:
+    if detect_intent_texts(project_id, event.user_id, event.text).intent.is_fallback:
         pass
     else:
-        message_from_bot = detect_intent_texts(event.user_id, event.text).fulfillment_text
+        message_from_bot = detect_intent_texts(project_id, event.user_id, event.text).fulfillment_text
         vk_api.messages.send(
                 user_id=event.user_id,
                 message=message_from_bot,
@@ -21,6 +21,7 @@ def dialog(event, vk_api):
 if __name__ == "__main__":
     load_dotenv()
     vk_token = os.getenv("VK_BOT_TOKEN")
+    project_id = os.getenv("PROJECT_ID")
     vk_session = vk.VkApi(token=vk_token)
     vk_api = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
