@@ -1,4 +1,5 @@
 import requests
+import argparse
 import json
 import os
 from dotenv import load_dotenv
@@ -35,8 +36,16 @@ if __name__ == "__main__":
     load_dotenv()
     project_id = os.getenv("PROJECT_ID")
 
-    url = 'https://dvmn.org/media/filer_public/a7/db/a7db66c0-1259-4dac-9726-2d1fa9c44f20/questions.json'
-    response = requests.get(url)
+    parser = argparse.ArgumentParser(
+           description='Программа загрузки тренировочных фраз в Dialogflow'
+       )
+    parser.add_argument(
+        "--url",
+        help="http адрес с .json файлом",
+    )
+    args = parser.parse_args()    
+
+    response = requests.get(args.url)
     response.raise_for_status()
     phrases_payload = response.json()
 
