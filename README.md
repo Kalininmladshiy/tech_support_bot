@@ -46,9 +46,13 @@ python -m venv <название виртуального окружения>
 pip install -r requirements.txt
 ```
 
-### 9. Запускаем бота
+### 9. Запускаем бота тех. поддержки в телеграм:
 ```
 python3 tech_support_bot.py
+```
+или бота тех. поддержки во Вконтакте:
+```
+python3 vk_bot.py
 ```
 
 ## download_phrase.py
