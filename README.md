@@ -84,7 +84,9 @@ python3 tech_support_bot.py
     }
 }
 ```
- 
+```
+python download_phrase.py --url <https://адрес/с/вашим/файлом/с/фразы.json>
+```
 ## Цели проекта
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org/).
