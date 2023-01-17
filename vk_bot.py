@@ -7,13 +7,11 @@ from utils.dialogflow_tools import detect_intent_texts
 
 
 def dialog(event, vk_api, project_id):
-    if detect_intent_texts(project_id, event.user_id, event.text).intent.is_fallback:
-        pass
-    else:
-        message_from_bot = detect_intent_texts(project_id, event.user_id, event.text).fulfillment_text
+    message_from_bot = detect_intent_texts(project_id, event.user_id, event.text)
+    if not message_from_bot.intent.is_fallback:
         vk_api.messages.send(
                 user_id=event.user_id,
-                message=message_from_bot,
+                message=message_from_bot.fulfillment_text,
                 random_id=random.randint(1, 1000),
             )
 
