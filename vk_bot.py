@@ -6,7 +6,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from utils.dialogflow_tools import detect_intent_texts
 
 
-def dialog(event, vk_api):
+def dialog(event, vk_api, project_id):
     if detect_intent_texts(project_id, event.user_id, event.text).intent.is_fallback:
         pass
     else:
@@ -18,7 +18,7 @@ def dialog(event, vk_api):
             )
 
 
-if __name__ == "__main__":
+def main():
     load_dotenv()
     vk_token = os.getenv("VK_BOT_TOKEN")
     project_id = os.getenv("PROJECT_ID")
@@ -27,4 +27,8 @@ if __name__ == "__main__":
     longpoll = VkLongPoll(vk_session)
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
-            dialog(event, vk_api)
+            dialog(event, vk_api, project_id)
+
+
+if __name__ == "__main__":
+    main()
